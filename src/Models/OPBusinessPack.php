@@ -24,7 +24,7 @@ class OPBusinessPack extends OPModel {
         'PackValue' => 'required|numeric',
         'CashOnDelivery' => 'required|boolean',
         'AmountCashOnDelivery' => 'nullable|numeric',
-        'Insurance' => 'nullable|boolean',
+        'Insurance' => 'nullable|numeric',
         'PrintAdress' => 'required',
         'PrintType' => 'required',
         'TransferDescription' => 'nullable',
