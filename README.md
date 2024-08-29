@@ -132,6 +132,28 @@ $GenerateBusinessPack->getPackPrice(); // Returns PackPrice
 $GenerateBusinessPack->getPackPaid(); // Returns PackStatus
 ```
 
+### Generate Label
+
+```php
+use Mindgoner\LaravelOrlenPaczka\Requests\LabelPrintDuplicate;
+
+$LabelPrintDuplicate = new  LabelPrintDuplicate(
+	new OPPack(['PackCode' => '2101077997326'])
+);
+$LabelPrintDuplicate->get();
+
+$LabelPrintDuplicate->base64(); // Returns label in base64 format
+
+// or
+
+$LabelBinary = $LabelPrintDuplicate->pdf(); // Return label in binary format
+return response($LabelBinary)
+    ->header('Content-Type', 'application/pdf')
+    ->header('Content-Disposition', 'inline; filename="label.pdf"');
+
+```
+
+
 ### Ordering a pickup
 To order a pickup, use the `CallPickup` request:
 ```php
@@ -139,7 +161,7 @@ use Mindgoner\LaravelOrlenPaczka\Requests\CallPickup;
 
 $CallPickup = new CallPickup([
     'packList' => [
-        new OPPack(['PackCode' => '2101072764712'])
+        new OPPack(['PackCode' => '2101077997326'])
     ],
     //'readyDate' => date('Y-m-d\T9:00:00', strtotime('+1 day')), // Alternatively (must be in the future)
     //'pickupDate' => date('Y-m-d\T17:00:00', strtotime('+1 day')), // Alternatively (must be in the future)
