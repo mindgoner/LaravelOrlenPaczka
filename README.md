@@ -99,8 +99,8 @@ $OPBusinessPack = new OPBusinessPack([
 	'AlternativeDestinationCode' => 'ALT456',
 	'ReturnDestinationCode' => 'RET789',
 	'BoxSize' => 'Medium',
-	'PackValue' => 100.50,
-	'CashOnDelivery' => true,
+	'PackValue' => 100,
+	'CashOnDelivery' => false,
 	'AmountCashOnDelivery' => 50.00,
 	'Insurance' => true,
 	'PrintAddress' => '123 Business St.',
@@ -120,4 +120,28 @@ $GenerateBusinessPack = new GenerateBusinessPack(
 	$OPReceiver,
 );
 $response = $GenerateBusinessPack->send(); // Send method returns OP server's Response
+```
+Get data from response:
+```php
+$GenerateBusinessPack->success(); // Returns true if success
+$GenerateBusinessPack->getPackCode(); // Returns PackCode
+$GenerateBusinessPack->getDestinationCode(); // Returns DestinationCode
+$GenerateBusinessPack->getDestinationId(); // Returns DestinationId
+$GenerateBusinessPack->getPackPrice(); // Returns PackPrice
+$GenerateBusinessPack->getPackPaid(); // Returns PackStatus
+```
+
+### Ordering a pickup
+To order a pickup, use the `CallPickup` request:
+```php
+use Mindgoner\LaravelOrlenPaczka\Requests\CallPickup;
+
+$CallPickup = new CallPickup([
+    'packList' => [
+        new OPPack(['PackCode' => '2101072764712'])
+    ],
+    //'readyDate' => date('Y-m-d\TH:i:s', time()), // Alternatively (must be in the future)
+    //'pickupDate' => date('Y-m-d\TH:i:s', strtotime('+7 days')), // Alternatively (must be in the future)
+]);
+$CallPickup->send();
 ```

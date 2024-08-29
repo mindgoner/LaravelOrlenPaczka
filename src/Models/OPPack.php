@@ -6,7 +6,7 @@ class OPPack extends OPModel {
 
     public $PackCode;
 
-    private $validator = [
+    public $validator = [
         'PackCode' => 'required',
     ];
 

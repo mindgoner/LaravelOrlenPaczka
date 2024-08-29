@@ -20,6 +20,7 @@ class OPModel{
                 $this->$key = $value;
             }
         }
+        $this->validate();
     }
 
     /**
@@ -90,6 +91,19 @@ class OPModel{
                 }
             }
         }
+    }
+
+    /**
+     * Convert the model variables into dictionary
+     * 
+     * @return array
+     */
+    public function toArray(){
+        $array = [];
+        foreach($this as $key => $value){
+            $array[$key] = $value;
+        }
+        return $array;
     }
 
 }

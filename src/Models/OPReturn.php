@@ -19,7 +19,7 @@ class OPReturn extends OPModel {
     public $ReturnAvailable = false;
     public $ReturnQuantity = 0;
 
-    private $validator = [
+    public $validator = [
         'ReturnDestinationCode' => 'required',
         'ReturnEMail' => 'required|email',
         'ReturnFirstName' => 'required',

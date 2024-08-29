@@ -12,11 +12,11 @@ class OPBusinessPack extends OPModel {
     public $CashOnDelivery;
     public $AmountCashOnDelivery;
     public $Insurance;
-    public $PrintAddress;
+    public $PrintAdress;
     public $PrintType;
     public $TransferDescription;
 
-    private $validator = [
+    public $validator = [
         'DestinationCode' => 'required',
         'AlternativeDestinationCode' => 'nullable',
         'ReturnDestinationCode' => 'nullable',
@@ -25,7 +25,7 @@ class OPBusinessPack extends OPModel {
         'CashOnDelivery' => 'required|boolean',
         'AmountCashOnDelivery' => 'nullable|numeric',
         'Insurance' => 'nullable|boolean',
-        'PrintAddress' => 'required',
+        'PrintAdress' => 'required',
         'PrintType' => 'required',
         'TransferDescription' => 'nullable',
     ];

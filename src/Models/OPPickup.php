@@ -8,7 +8,7 @@ class OPPickup extends OPModel {
     public $readyDate;
     public $pickupDate;
 
-    private $validator = [
+    public $validator = [
         'packList' => 'required|array',
         'packList.*' => 'min:1',
         'readyDate' => 'required',

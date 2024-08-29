@@ -15,7 +15,7 @@ class OPReceiver extends OPModel{
     public $PostCode;
     public $PhoneNumber;
 
-    private $validator = [
+    public $validator = [
         'EMail' => 'required|email',
         'FirstName' => 'required',
         'LastName' => 'required',

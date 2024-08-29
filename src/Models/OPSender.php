@@ -16,7 +16,7 @@ class OPSender extends OPModel {
     public $SenderPhoneNumber;
     public $SenderOrders;
 
-    private $validator = [
+    public $validator = [
         'SenderEMail' => 'required|email',
         'SenderFirstName' => 'required',
         'SenderLastName' => 'required',

@@ -7,7 +7,7 @@ class OPAuth extends OPModel{
     public $PartnerID;
     public $PartnerKey;
 
-    private $validator = [
+    public $validator = [
         'PartnerID' => 'required',
         'PartnerKey' => 'required',
     ];
