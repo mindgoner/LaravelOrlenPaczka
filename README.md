@@ -175,9 +175,9 @@ $CallPickup->send();
 ```
 
 
-## Setting up database with destination points and autoupdater
+## Selfhosting DestinationPoints and Autoupdate 
 
-If you'd like to store destination points at your server, feel free to use following code.
+If you'd like to store DestinationPoints at your server to increase performance, feel free to use following code to publish migrations and setup scheduler, that will update DestinationPoint states at specified time.
 
 ### Migration
 
@@ -189,13 +189,15 @@ Migrate file to database:
 ```bash
 php artisan migrate
 ```
+
+### Scheduler
 Publish command:
 ```bash
 php artisan vendor:publish --tag=commands
 ```
 Setup scheduled command executing in `app/Console/Kernel.php`:
 ```php
-use Mindgoner\LaravelOrlenPaczka\App\Console\Commands\OPUpdateLocationsList;
+use App\Console\Commands\OPUpdateLocationsList;
 
 $schedule->command('op:update-locations')->dailyAt('05:00');
 ```
