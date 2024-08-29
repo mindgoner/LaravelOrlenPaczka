@@ -70,6 +70,6 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
 
     public function send(){
         $body = $this->toXMLString();
-        return $this->sendRequest('POST', $body);
+        return $this->sendXMLRequest('POST', $body);
     }
 }
