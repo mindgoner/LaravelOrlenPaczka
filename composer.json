@@ -1,0 +1,24 @@
+{
+    "name": "mindgoner/laravel-orlen-paczka",
+    "type": "library",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-soap": "*",
+        "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0 || ^10.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mindgoner\\LaravelOrlenPaczka\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mindgoner",
+            "email": "contact@bartoszbieniek.pl"
+        }
+    ]
+}
