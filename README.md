@@ -10,6 +10,11 @@ To install the package, use Composer:
 composer require mindgoner/laravel-orlen-paczka
 ```
 
+To publish configuration files, type command:
+```bash
+php artisan vendor:publish --tag=config
+```
+
 # Usage
 ## Sending Parcels
 
@@ -132,7 +137,7 @@ $GenerateBusinessPack->getPackPrice(); // Returns PackPrice
 $GenerateBusinessPack->getPackPaid(); // Returns PackStatus
 ```
 
-### Generate Label
+## Generate Label
 
 ```php
 use Mindgoner\LaravelOrlenPaczka\Requests\LabelPrintDuplicate;
@@ -154,7 +159,7 @@ return response($LabelBinary)
 ```
 
 
-### Ordering a pickup
+## Ordering a pickup
 To order a pickup, use the `CallPickup` request:
 ```php
 use Mindgoner\LaravelOrlenPaczka\Requests\CallPickup;
@@ -167,4 +172,30 @@ $CallPickup = new CallPickup([
     //'pickupDate' => date('Y-m-d\T17:00:00', strtotime('+1 day')), // Alternatively (must be in the future)
 ]);
 $CallPickup->send();
+```
+
+
+## Setting up database with destination points and autoupdater
+
+If you'd like to store destination points at your server, feel free to use following code.
+
+### Migration
+
+Use following code to publish migration files:
+```bash
+php artisan vendor:publish --tag=migrations
+```
+Migrate file to database:
+```bash
+php artisan migrate
+```
+Publish command:
+```bash
+php artisan vendor:publish --tag=commands
+```
+Setup scheduled command executing in `app/Console/Kernel.php`:
+```php
+use Mindgoner\LaravelOrlenPaczka\App\Console\Commands\OPUpdateLocationsList;
+
+$schedule->command('op:update-locations')->dailyAt('05:00');
 ```
