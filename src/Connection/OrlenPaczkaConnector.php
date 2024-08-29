@@ -64,6 +64,9 @@ class OrlenPaczkaConnector{
         ]);
     
         try {
+            if(is_null($this->Auth)){
+                $this->Auth = new OPAuth();
+            }
             $authQuery = http_build_query([
                 'PartnerID' => $this->Auth->PartnerID,
                 'PartnerKey' => $this->Auth->PartnerKey
