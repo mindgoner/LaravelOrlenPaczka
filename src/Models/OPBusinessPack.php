@@ -4,9 +4,7 @@ namespace Mindgoner\LaravelOrlenPaczka\Models;
 
 class OPBusinessPack extends OPModel {
 
-    public $DestinationCode;
     public $AlternativeDestinationCode;
-    public $ReturnDestinationCode;
     public $BoxSize;
     public $PackValue;
     public $CashOnDelivery;
@@ -17,9 +15,7 @@ class OPBusinessPack extends OPModel {
     public $TransferDescription;
 
     public $validator = [
-        'DestinationCode' => 'required',
         'AlternativeDestinationCode' => 'nullable',
-        'ReturnDestinationCode' => 'nullable',
         'BoxSize' => 'required',
         'PackValue' => 'required|numeric',
         'CashOnDelivery' => 'required|boolean',

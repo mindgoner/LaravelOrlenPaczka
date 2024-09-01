@@ -52,7 +52,6 @@ class OPUpdateLocationsList extends Command
         $this->info('Updating locations list in database...');
         $startTime = microtime(true);
         foreach ($Locations as $location) {
-            dd($location);
             // Zamiana na tablicę dla ułatwienia masowego przypisania
             $locationData = [
                 'DestinationCode' => (string) $location->DestinationCode,

@@ -4,6 +4,8 @@ namespace Mindgoner\LaravelOrlenPaczka\Requests;
 
 use Mindgoner\LaravelOrlenPaczka\Connection\OrlenPaczkaConnector;
 
+use Illuminate\Support\Facades\Log;
+
 use Mindgoner\LaravelOrlenPaczka\Models\OPAuth;
 use Mindgoner\LaravelOrlenPaczka\Models\OPBusinessPack;
 use Mindgoner\LaravelOrlenPaczka\Models\OPReceiver;
@@ -72,23 +74,15 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
 
     public function send(){
         $this->setWsdlSuffix('/GenerateBusinessPack');
-        return $this->sendRequest('GET', $this->constructAttributes());
-    }
-
-    /**
-     * Construct attributes
-     * 
-     * @return array
-     */
-    public function constructAttributes(){
-        $attributes = array_merge(
+        $data = array_merge(
             $this->Auth->toArray(),
             $this->Sender->toArray(),
             $this->Receiver->toArray(),
             $this->Return->toArray(),
             $this->BusinessPack->toArray(),
         );
-        return $attributes;
+        $this->response = $this->sendRequest('GET', $data);
+        return $this->response;
     }
 
     /**
@@ -98,12 +92,18 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
      * @throws \Exception
      */
     public function getPackCode(){
-        $xml = new \SimpleXMLElement($this->response);
-        $PackCode = (string) $xml->xpath('//GenerateBusinessPack/PackCode_RUCH')[0];
-        if($PackCode == ''){
-            throw new \Exception('PackCode not found in response');
+        try{
+            $xml = new \SimpleXMLElement($this->response);
+            $PackCode = (string) $xml->xpath('//GenerateBusinessPack/PackCode_RUCH')[0];
+            if($PackCode == ''){
+                throw new \Exception('PackCode not found in response');
+            }
+            return $PackCode;
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            Log::info($this->response);
+            return false;
         }
-        return $PackCode;
     }
 
     /**
@@ -113,12 +113,18 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
      * @throws \Exception
      */
     public function getDestinationCode(){
-        $xml = new \SimpleXMLElement($this->response);
-        $destinationCode = (string) $xml->xpath('//GenerateBusinessPack/DestinationCode')[0];
-        if($destinationCode == ''){
-            throw new \Exception('DestinationCode not found in response');
+        try{
+            $xml = new \SimpleXMLElement($this->response);
+            $destinationCode = (string) $xml->xpath('//GenerateBusinessPack/DestinationCode')[0];
+            if($destinationCode == ''){
+                throw new \Exception('DestinationCode not found in response');
+            }
+            return $destinationCode;
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            Log::info($this->response);
+            return false;
         }
-        return $destinationCode;
     }
 
     /**
@@ -128,12 +134,18 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
      * @throws \Exception
      */
     public function getDestinationId(){
-        $xml = new \SimpleXMLElement($this->response);
-        $destinationId = (string) $xml->xpath('//GenerateBusinessPack/DestinationId')[0];
-        if($destinationId == ''){
-            throw new \Exception('DestinationId not found in response');
+        try{
+            $xml = new \SimpleXMLElement($this->response);
+            $destinationId = (string) $xml->xpath('//GenerateBusinessPack/DestinationId')[0];
+            if($destinationId == ''){
+                throw new \Exception('DestinationId not found in response');
+            }
+            return $destinationId;
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            Log::info($this->response);
+            return false;
         }
-        return $destinationId;
     }
 
     /**
@@ -143,12 +155,18 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
      * @throws \Exception
      */
     public function getPackPrice(){
-        $xml = new \SimpleXMLElement($this->response);
-        $packPrice = (string) $xml->xpath('//GenerateBusinessPack/PackPrice')[0];
-        if($packPrice == ''){
-            throw new \Exception('PackPrice not found in response');
+        try{
+            $xml = new \SimpleXMLElement($this->response);
+            $packPrice = (string) $xml->xpath('//GenerateBusinessPack/PackPrice')[0];
+            if($packPrice == ''){
+                throw new \Exception('PackPrice not found in response');
+            }
+            return $packPrice;
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            Log::info($this->response);
+            return false;
         }
-        return $packPrice;
     }
 
     /**
@@ -158,11 +176,17 @@ class GenerateBusinessPack extends OrlenPaczkaConnector
      * @throws \Exception
      */
     public function getPackPaid(){
-        $xml = new \SimpleXMLElement($this->response);
-        $packPaid = (string) $xml->xpath('//GenerateBusinessPack/PackPaid')[0];
-        if($packPaid == ''){
-            throw new \Exception('PackPaid not found in response');
+        try{
+            $xml = new \SimpleXMLElement($this->response);
+            $packPaid = (string) $xml->xpath('//GenerateBusinessPack/PackPaid')[0];
+            if($packPaid == ''){
+                throw new \Exception('PackPaid not found in response');
+            }
+            return $packPaid;
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            Log::info($this->response);
+            return false;
         }
-        return $packPaid;
     }
 }

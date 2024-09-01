@@ -4,6 +4,8 @@ namespace Mindgoner\LaravelOrlenPaczka\Requests;
 
 use Mindgoner\LaravelOrlenPaczka\Connection\OrlenPaczkaConnector;
 
+use Illuminate\Support\Facades\Log;
+
 use Mindgoner\LaravelOrlenPaczka\Models\OPAuth;
 use Mindgoner\LaravelOrlenPaczka\Models\OPPack;
 
@@ -61,12 +63,16 @@ class LabelPrintDuplicate extends OrlenPaczkaConnector
      * @return string
      */
     public function base64(){
-        $xml = new \SimpleXMLElement($this->response);
-        $PackCode = (string) $xml->Label;
-        if($PackCode == ''){
-            throw new \Exception('Label not found in response');
+        try{
+            $xml = new \SimpleXMLElement($this->response);
+            $PackCode = (string) $xml->Label;
+            if($PackCode == ''){
+                throw new \Exception('Label not found in response');
+            }
+            return $PackCode;
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
         }
-        return $PackCode;
     }
 
     /**

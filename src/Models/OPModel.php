@@ -99,10 +99,7 @@ class OPModel{
      * @return array
      */
     public function toArray(){
-        $array = [];
-        foreach($this as $key => $value){
-            $array[$key] = $value;
-        }
+        $array = get_object_vars($this);
         return $array;
     }
 
