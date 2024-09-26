@@ -1,5 +1,6 @@
 <?php
     return [
-        'PartnerKey' => env('ORLEN_PACZKA_PARTNER_KEY', 'your-partner-key'),
-        'PartnerId' => env('ORLEN_PACZKA_PARTNER_ID', 'your-partner-id'),
+        'PartnerKey' => env('OP_PARTNERKEY', 'your-partner-key'),
+        'PartnerId' => env('OP_PARTNERID', 'your-partner-id'),
+        'MapToken' => env('OP_MAPTOKEN', 'your-map-token'),
     ];

@@ -201,3 +201,21 @@ use App\Console\Commands\OPUpdateLocationsList;
 
 $schedule->command('op:update-locations')->dailyAt('05:00');
 ```
+
+### Map Widget
+To implement map widget, use button that should appear, when user selected delivery to PickupMachine:
+```php
+<button class="orlen-widget">Znajdź na mapie</button> <!-- Modal opening -->
+
+<div class="orlen-widget" data-target="#outputDeliveryPointNameToMyId" style="height: 100%;"></div> <!-- Widget -->
+
+<input id="outputDeliveryPointNameToMyId" name="destinationMachineCode">
+```
+Then add to `<head>` section following:
+```php
+@OPMap()
+```
+Create new variable in your .env file: 
+```bash
+OP_MAPTOKEN='put-token-here'
+```
