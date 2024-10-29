@@ -15,7 +15,10 @@ class OPLocation extends Model
      * @var string
      */
     protected $table = 'orlen_paczka_locations';
-
+    protected $primaryKey = 'DestinationCode';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    
     /**
      * The attributes that are mass assignable.
      *
